@@ -16,9 +16,11 @@
   ],
 
   "dependencies": {
+    "@types/lodash-es": "^4.17.5",
     "@types/three": "^0.134.0",
     "copy-webpack-plugin": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "lodash-es": "^4.17.21",
     "three": "^0.134.0",
     "ts-loader": "^9.2.6",
     "webpack": "^5.64.3",
