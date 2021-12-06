@@ -108,3 +108,7 @@ dist
 
 # Webpack
 dist/*
+
+# Compiled css
+*.css
+*.css.map
