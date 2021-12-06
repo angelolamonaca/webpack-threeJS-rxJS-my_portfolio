@@ -1,5 +1,16 @@
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  height: 100*50vh;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
-  overflow: hidden;
 
+  & canvas {
+    position: fixed;
+  }
 }

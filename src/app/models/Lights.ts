@@ -6,7 +6,7 @@ export class Lights {
     spotLight: THREE.SpotLight;
 
     constructor() {
-        this.spotLight = new THREE.SpotLight(colours.burlywood, 2);
+        this.spotLight = new THREE.SpotLight(colours.burlywood);
         sceneController.world.addLight(this.spotLight);
     }
 }

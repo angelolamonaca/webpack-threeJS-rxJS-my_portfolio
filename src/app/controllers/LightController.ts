@@ -1,5 +1,6 @@
 import { Lights } from '../models/Lights';
 import { CameraController } from './CameraController';
+import { ScrollController } from './ScrollController';
 
 export class LightController {
     private static _instance: LightController;
@@ -19,5 +20,6 @@ export class LightController {
             CameraController.Instance.camera.position.y + 10,
             CameraController.Instance.camera.position.z + 10
         );
+        this.lights.spotLight.intensity = ScrollController.Instance.getScrollRelativeTo(4);
     }
 }
