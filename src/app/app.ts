@@ -3,6 +3,7 @@ import { SceneController } from './controllers/SceneController';
 import { AnimationController } from './controllers/AnimationController';
 import { CameraController } from './controllers/CameraController';
 import { EventController } from './controllers/EventController';
+import { LightController } from './controllers/LightController';
 
 export const sceneController = new SceneController();
 export const eventController = new EventController();
@@ -12,6 +13,7 @@ document.body.appendChild(renderer.domElement);
 export function animate(): void {
     requestAnimationFrame(animate);
     AnimationController.Instance.animate();
+    LightController.Instance.animate();
     render();
 }
 
