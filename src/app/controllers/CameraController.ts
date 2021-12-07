@@ -16,14 +16,14 @@ export class CameraController {
     }
 
     animate(): void {
-        this.camera.position.setX(ScrollController.Instance.getScrollRelative(0, 0));
+        this.camera.position.setX(ScrollController.Instance.getScrollRelative(0, -0.07));
         this.camera.position.setY(ScrollController.Instance.getScrollRelative(0, 1.7));
-        this.camera.position.setZ(ScrollController.Instance.getScrollRelative(6, 1));
+        this.camera.position.setZ(ScrollController.Instance.getScrollRelative(6, 0.6));
         this.camera.lookAt(
             new Vector3(
                 ScrollController.Instance.getScrollRelative(
                     0,
-                    sceneController.itachi.getFacePosition().x
+                    sceneController.itachi.getFacePosition().x - 0.1
                 ),
                 ScrollController.Instance.getScrollRelative(
                     0,

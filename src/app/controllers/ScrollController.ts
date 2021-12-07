@@ -1,9 +1,11 @@
 export class ScrollController {
     private static _instance: ScrollController;
     pageHeight: number;
+    innerHeight: number;
 
     constructor() {
         this.pageHeight = document.getElementsByTagName('html')[0].offsetHeight;
+        this.innerHeight = window.innerHeight;
     }
 
     public static get Instance(): ScrollController {
@@ -19,6 +21,6 @@ export class ScrollController {
     }
 
     isBottom() {
-        return this.pageHeight - scrollY < 900;
+        return this.pageHeight - scrollY < innerHeight + 100;
     }
 }
