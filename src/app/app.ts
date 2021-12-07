@@ -13,6 +13,7 @@ document.body.appendChild(renderer.domElement);
 export function animate(): void {
     requestAnimationFrame(animate);
     AnimationController.Instance.animate();
+    CameraController.Instance.animate();
     LightController.Instance.animate();
     render();
 }

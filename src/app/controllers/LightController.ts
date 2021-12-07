@@ -20,6 +20,6 @@ export class LightController {
             CameraController.Instance.camera.position.y + 10,
             CameraController.Instance.camera.position.z + 10
         );
-        this.lights.spotLight.intensity = ScrollController.Instance.getScrollRelativeTo(4);
+        this.lights.spotLight.intensity = ScrollController.Instance.getScrollRelativeTo(1);
     }
 }

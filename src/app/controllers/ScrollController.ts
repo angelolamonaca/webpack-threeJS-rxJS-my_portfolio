@@ -10,7 +10,15 @@ export class ScrollController {
         return this._instance || (this._instance = new this());
     }
 
+    getScrollRelative(min: number, max: number) {
+        return this.getScrollRelativeTo(max - min) + min;
+    }
+
     getScrollRelativeTo(max: number) {
         return (max * scrollY) / this.pageHeight;
+    }
+
+    isBottom() {
+        return this.pageHeight - scrollY < 900;
     }
 }

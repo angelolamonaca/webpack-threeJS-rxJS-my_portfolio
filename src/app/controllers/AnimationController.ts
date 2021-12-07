@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { sceneController } from '../app';
+import { ScrollController } from './ScrollController';
 
 export class AnimationController {
     private static _instance: AnimationController;
@@ -15,5 +16,9 @@ export class AnimationController {
             mixer.update(delta);
         });
         sceneController.crows.moveCrows();
+        sceneController.itachi.itachiUchihaMixer.update(delta);
+        if (ScrollController.Instance.isBottom()) {
+            sceneController.itachi.amaterasu();
+        }
     }
 }
