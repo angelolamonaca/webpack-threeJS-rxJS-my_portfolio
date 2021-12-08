@@ -16,7 +16,7 @@ export class CameraController {
     }
 
     animate(): void {
-        this.camera.position.setX(ScrollController.Instance.getScrollRelative(0, -0.07));
+        this.camera.position.setX(ScrollController.Instance.getScrollRelative(0, -0.2));
         this.camera.position.setY(ScrollController.Instance.getScrollRelative(0, 1.7));
         this.camera.position.setZ(ScrollController.Instance.getScrollRelative(6, 0.6));
         this.camera.lookAt(
