@@ -1,4 +1,5 @@
 html {
+  background-color: black;
   -ms-overflow-style: none; /* IE and Edge */
   height: 100*50vh;
 }
@@ -11,14 +12,20 @@ body {
   margin: 0;
 
   & canvas {
+    transition: opacity 1s;
+    opacity: 0;
     position: fixed;
   }
 
-  & .container {
+  & #container {
+    width: 100vw;
+    transition: opacity 1s;
+    opacity: 0;
     position: absolute;
     z-index: 1;
 
     & .button {
+      width: fit-content;
       position: relative;
       left: 3vw;
       top: 5vh;
@@ -35,8 +42,19 @@ body {
     & img:hover {
       transform: rotate(360deg) scale(1.1);
       -webkit-transform:rotate(360deg) scale(1.1);
-      background-image: linear-gradient(to right, #340000 0%, #bb0000 100%);
       background-blend-mode: soft-light;
+    }
+
+    & img#discord_logo_img:hover {
+      background-image: linear-gradient(to right, #35005b 0%, #9400c5 100%);
+    }
+
+    & img#github_logo_img:hover {
+      background-image: linear-gradient(to right, #333333 0%, #b0b0b0 100%);
+    }
+
+    & img#linkedin_logo_img:hover {
+      background-image: linear-gradient(to right, #000734 0%, #001fbb 100%);
     }
   }
 
@@ -48,4 +66,52 @@ body {
       margin-right: 10vw;
     }
   }
+}
+
+// Loading screen
+@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+
+@mixin position-center($text-align: center) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: $text-align;
+}
+
+#loading {
+  transition: opacity 1s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 2;
+}
+
+.loading-text {
+  @include position-center;
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  span {
+    display: inline-block;
+    margin: 0 5px;
+    color: #fff;
+    font-family: 'Quattrocento Sans', sans-serif;
+    @for $i from 0 through 6 {
+      &:nth-child(#{$i + 1}) {
+        filter: blur(0px);
+        animation: blur-text 1.5s (#{$i/5})+s infinite linear alternate;
+      }
+    }
+  }
+}
+
+@keyframes blur-text {
+  0% {filter: blur(0px);}
+  100% {filter: blur(4px);}
 }
