@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: ['./src/index.css', './src/app/app.ts'],
+    entry: './src/app/app.ts',
     module: {
         rules: [
             {
@@ -15,10 +15,6 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif|gltf|json|ico)$/i,
                 type: 'asset/resource',
             },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
-            },
         ],
     },
     plugins: [
@@ -27,7 +23,11 @@ module.exports = {
         }),
 
         new CopyPlugin({
-            patterns: [{ from: './src/assets', to: 'assets' }, { from: './src/favicon.ico' }],
+            patterns: [
+                { from: './src/assets', to: 'assets' },
+                { from: './src/favicon.ico' },
+                { from: './src/index.css' },
+            ],
         }),
     ],
     resolve: {
