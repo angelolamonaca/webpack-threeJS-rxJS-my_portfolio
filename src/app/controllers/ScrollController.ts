@@ -1,3 +1,5 @@
+import { LoadingController } from './LoadingController';
+
 export class ScrollController {
     private static _instance: ScrollController;
     static pageHeight: number = document.getElementsByTagName('html')[0].offsetHeight;

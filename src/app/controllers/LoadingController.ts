@@ -7,6 +7,7 @@ import { delay } from '../shared/Utils';
 
 export class LoadingController {
     private static _instance: LoadingController;
+    loadingComplete: boolean = false;
 
     loadingManager = new LoadingManager();
     gltfLoader = new GLTFLoader(this.loadingManager);
@@ -53,10 +54,9 @@ class LoadingManager extends THREE.LoadingManager {
         document.getElementById('loading')!.style.zIndex = '0';
         await delay(1000);
         // Show canvas
-        document.getElementsByTagName('canvas')![0].style.opacity = '1';
+        document.getElementsByTagName('canvas')![0].style.opacity = '0.5';
         await delay(500);
-        // Show contact buttons
-        document.getElementById('container')!.style.opacity = '1';
+        LoadingController.Instance.loadingComplete = true;
     };
     onError = (url: string): void => {
         console.log('There was an error loading ' + url);
