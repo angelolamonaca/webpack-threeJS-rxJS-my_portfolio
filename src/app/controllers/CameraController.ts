@@ -16,22 +16,36 @@ export class CameraController {
     }
 
     animate(): void {
-        this.camera.position.setX(ScrollController.Instance.getScrollRelative(0, -0.2));
-        this.camera.position.setY(ScrollController.Instance.getScrollRelative(0, 1.7));
-        this.camera.position.setZ(ScrollController.Instance.getScrollRelative(6, 0.6));
-        this.camera.lookAt(
+        if (ScrollController.Instance.scrollPercentage < 50)
+            CameraController.Instance.lookAtItachi();
+    }
+
+    lookAtItachi(): void {
+        CameraController.Instance.camera.position.setX(
+            ScrollController.Instance.getPartialScrollRelative(0, -0.2, 50)
+        );
+        CameraController.Instance.camera.position.setY(
+            ScrollController.Instance.getPartialScrollRelative(0, 1.7, 50)
+        );
+        CameraController.Instance.camera.position.setZ(
+            ScrollController.Instance.getPartialScrollRelative(6, 0.6, 50)
+        );
+        CameraController.Instance.camera.lookAt(
             new Vector3(
-                ScrollController.Instance.getScrollRelative(
+                ScrollController.Instance.getPartialScrollRelative(
                     0,
-                    sceneController.itachi.getFacePosition().x - 0.1
+                    sceneController.itachi.getFacePosition().x - 0.1,
+                    50
                 ),
-                ScrollController.Instance.getScrollRelative(
+                ScrollController.Instance.getPartialScrollRelative(
                     0,
-                    sceneController.itachi.getFacePosition().y
+                    sceneController.itachi.getFacePosition().y,
+                    50
                 ),
-                ScrollController.Instance.getScrollRelative(
+                ScrollController.Instance.getPartialScrollRelative(
                     0,
-                    sceneController.itachi.getFacePosition().z
+                    sceneController.itachi.getFacePosition().z,
+                    50
                 )
             )
         );

@@ -1,10 +1,11 @@
 export class ScrollController {
     private static _instance: ScrollController;
-    pageHeight: number;
+    static pageHeight: number = document.getElementsByTagName('html')[0].offsetHeight;
     innerHeight: number;
+    scrollPercentage: number;
 
     constructor() {
-        this.pageHeight = document.getElementsByTagName('html')[0].offsetHeight;
+        this.scrollPercentage = 0;
         this.innerHeight = window.innerHeight;
     }
 
@@ -12,15 +13,48 @@ export class ScrollController {
         return this._instance || (this._instance = new this());
     }
 
-    getScrollRelative(min: number, max: number) {
-        return this.getScrollRelativeTo(max - min) + min;
+    /**
+     *
+     * @param min is the relative value when scroll is at begin page
+     * @param max is the relative value when scroll is at end page
+     * Returns the relative value
+     */
+    getGlobalScrollRelative(min: number, max: number): number {
+        return ((max - min) * scrollY) / ScrollController.pageHeight + min;
     }
 
-    getScrollRelativeTo(max: number) {
-        return (max * scrollY) / this.pageHeight;
+    /**
+     *
+     * @param min is the relative value when scroll is at begin page
+     * @param max is the relative value when scroll is at end page
+     * @param maxScrollPercentage the ScrollPercentage when the value is max
+     * Returns the relative value
+     */
+    getPartialScrollRelative(min: number, max: number, maxScrollPercentage: number): number {
+        return (
+            ((max - min) * scrollY) /
+                ScrollController.Instance.convertScrollPercentageToPageHeight(maxScrollPercentage) +
+            min
+        );
     }
 
-    isBottom() {
-        return this.pageHeight - scrollY < innerHeight + 100;
+    /**
+     * It detects the percentage of global scrolling
+     */
+    detectScrollPercentage(): void {
+        ScrollController.Instance.scrollPercentage = Math.round(
+            (window.scrollY * 100) / (ScrollController.pageHeight - innerHeight)
+        );
+    }
+
+    /**
+     * Returns true if we scrolled to the bottom
+     */
+    isBottom(): boolean {
+        return ScrollController.pageHeight - scrollY < innerHeight + 100;
+    }
+
+    convertScrollPercentageToPageHeight(scrollPercentage: number): number {
+        return (ScrollController.pageHeight * scrollPercentage) / 100;
     }
 }

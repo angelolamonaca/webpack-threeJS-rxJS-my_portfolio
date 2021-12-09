@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { animate } from '../app';
+import { animate, render, renderer } from '../app';
 import { forEach } from 'lodash-es';
+import { CameraController } from './CameraController';
+import { delay } from '../shared/Utils';
 
 export class LoadingController {
     private static _instance: LoadingController;
@@ -43,34 +45,20 @@ class LoadingManager extends THREE.LoadingManager {
     };
     onLoad = async (): Promise<void> => {
         console.log('Loading complete!');
+        renderer.update();
         animate();
         await delay(3000);
+        // Hide Loading Page
         document.getElementById('loading')!.style.opacity = '0';
         document.getElementById('loading')!.style.zIndex = '0';
         await delay(1000);
+        // Show canvas
         document.getElementsByTagName('canvas')![0].style.opacity = '1';
-        await delay(1000);
+        await delay(500);
+        // Show contact buttons
         document.getElementById('container')!.style.opacity = '1';
-        const list = document.getElementsByClassName('button');
-        for (let item of list) {
-            item.animate(
-                [
-                    // keyframes
-                    { transform: 'translateX(-300px)' },
-                    { transition: 'transform 1s default' },
-                ],
-                {
-                    // timing options
-                    duration: 2000,
-                }
-            );
-        }
     };
     onError = (url: string): void => {
-        console.log('There was an error loadindg ' + url);
+        console.log('There was an error loading ' + url);
     };
-}
-
-function delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
 }

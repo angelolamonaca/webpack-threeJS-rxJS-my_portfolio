@@ -15,17 +15,19 @@ export class LightController {
     }
 
     animate(): void {
-        this.lights.spotLight.position.set(
+        LightController.Instance.lights.spotLight.position.set(
             CameraController.Instance.camera.position.x + 10,
             CameraController.Instance.camera.position.y + 10,
             CameraController.Instance.camera.position.z + 10
         );
-        this.lights.spotLightEye.position.set(
+        LightController.Instance.lights.spotLightEye.position.set(
             CameraController.Instance.camera.position.x - 10,
             CameraController.Instance.camera.position.y + 10,
             CameraController.Instance.camera.position.z + 10
         );
-        this.lights.spotLight.intensity = ScrollController.Instance.getScrollRelativeTo(1.2);
-        this.lights.spotLightEye.intensity = ScrollController.Instance.getScrollRelativeTo(0.8);
+        LightController.Instance.lights.spotLight.intensity =
+            ScrollController.Instance.getGlobalScrollRelative(0, 1.2);
+        LightController.Instance.lights.spotLightEye.intensity =
+            ScrollController.Instance.getGlobalScrollRelative(0, 0.8);
     }
 }

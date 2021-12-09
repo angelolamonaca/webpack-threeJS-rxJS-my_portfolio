@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { CameraController } from '../controllers/CameraController';
+import { render, renderer } from '../app';
+import { ScrollController } from '../controllers/ScrollController';
 
 export class Renderer extends THREE.WebGLRenderer {
     constructor() {
@@ -9,5 +12,12 @@ export class Renderer extends THREE.WebGLRenderer {
         this.toneMapping = THREE.ReinhardToneMapping;
         this.toneMappingExposure = 2.3;
         this.shadowMap.enabled = true;
+    }
+
+    update() {
+        CameraController.Instance.camera.aspect = window.innerWidth / window.innerHeight;
+        CameraController.Instance.camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        render();
     }
 }

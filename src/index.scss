@@ -32,7 +32,8 @@ body {
     }
 
     & img {
-      width: 30vw;
+      cursor: pointer;
+      width: 25vw;
       margin-bottom: 30vh;
       transition: transform .7s ease-in-out;
       border-radius: 100%;

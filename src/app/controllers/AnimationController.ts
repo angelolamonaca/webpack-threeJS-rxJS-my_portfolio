@@ -11,7 +11,7 @@ export class AnimationController {
     }
 
     animate(): void {
-        const delta = this.clock.getDelta();
+        const delta = AnimationController.Instance.clock.getDelta();
         sceneController.crows.crowMixers.forEach((mixer) => {
             mixer.update(delta);
         });
