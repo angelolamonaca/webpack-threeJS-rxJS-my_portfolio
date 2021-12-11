@@ -3,11 +3,9 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   height: 100*50vh;
 }
-
 html::-webkit-scrollbar {
   display: none;
 }
-
 body {
   margin: 0;
 
@@ -150,41 +148,49 @@ body {
     }
 
     & .button {
+      width: 100vw;
       transition: opacity 3s;
       opacity: 0;
-      width: fit-content;
       position: relative;
-      left: 10vw;
       top: 60vh;
+      margin-bottom: 30vw;
 
       & img {
-        margin-left: 30vw;
         cursor: pointer;
         width: 20vw;
-        margin-bottom: 30vw;
         transition: transform .7s ease-in-out;
         border-radius: 100%;
         -webkit-box-shadow: 1px 1px 50px #999;
         background-color: rgba(255, 255, 255, 0.3)
       }
-
       & img:hover {
         transform: rotate(360deg) scale(1.1);
         -webkit-transform: rotate(360deg) scale(1.1);
         background-blend-mode: soft-light;
       }
-
       & img#discord_logo_img:hover {
         background-image: linear-gradient(to right, #35005b 0%, #9400c5 100%);
       }
-
       & img#github_logo_img:hover {
         background-image: linear-gradient(to right, #333333 0%, #b0b0b0 100%);
       }
-
       & img#linkedin_logo_img:hover {
         background-image: linear-gradient(to right, #000734 0%, #001fbb 100%);
       }
+    }
+
+    & h3.button_description {
+      transition: opacity 5s;
+      @media (hover:hover) and (pointer: fine) {
+        opacity: 0;
+      }
+      position: relative;
+      color: #000000;
+      font-size: 5vw;
+      font-family:  "Zefani", serif;
+      text-transform: uppercase;
+      text-shadow: 0 0 5px #000000, 0 0 10px #626262, 0 0 15px #a4a4a4, 0 0 20px #ffffff;
+      margin-top: 5vh;
     }
   }
 }

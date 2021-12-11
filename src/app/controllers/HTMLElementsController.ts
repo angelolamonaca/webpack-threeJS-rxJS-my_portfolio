@@ -13,8 +13,11 @@ export class HTMLElementsController {
         const elementBoundingClientRect = element!.getBoundingClientRect();
         const elementIsOnView =
             elementBoundingClientRect.top > 0 && elementBoundingClientRect.top < window.innerHeight;
-        if (elementIsOnView) element!.style.opacity = '1';
-        else element!.style.opacity = '0';
+        if (elementIsOnView) {
+            element!.style.opacity = '1';
+        } else {
+            element!.style.opacity = '0';
+        }
     }
 
     animate() {

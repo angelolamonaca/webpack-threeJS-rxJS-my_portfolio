@@ -13,7 +13,15 @@ export class EventController {
     constructor() {
         this.previosWindowInnerWidth = window.innerWidth;
         this.resizeEvents$.subscribe();
+        this.listenOnButtonsClickOrTouch();
+        this.listenOnButtonDescriptionsHover();
+        window.onscroll = ScrollController.Instance.detectScrollPercentage;
+        window.onbeforeunload = () => {
+            window.scrollTo(0, 0);
+        };
+    }
 
+    listenOnButtonsClickOrTouch() {
         let touchEvent = 'onclick' in window ? 'click' : 'touchstart';
         fromEvent(document.getElementById('discord_logo_img')!, touchEvent).subscribe(async () => {
             await this.onClick('https://discordapp.com/users/568776197681709087');
@@ -24,11 +32,22 @@ export class EventController {
         fromEvent(document.getElementById('linkedin_logo_img')!, touchEvent).subscribe(async () => {
             await this.onClick('https://www.linkedin.com/in/angelolamonaca/');
         });
+    }
 
-        window.onscroll = ScrollController.Instance.detectScrollPercentage;
-        window.onbeforeunload = () => {
-            window.scrollTo(0, 0);
-        };
+    listenOnButtonDescriptionsHover() {
+        fromEvent(document.getElementById('discord_logo_img')!, 'mouseenter').subscribe(
+            async () => {
+                document.getElementById('discord_logo_description')!.style.opacity = '0.5';
+            }
+        );
+        fromEvent(document.getElementById('github_logo_img')!, 'mouseenter').subscribe(async () => {
+            document.getElementById('github_logo_description')!.style.opacity = '0.5';
+        });
+        fromEvent(document.getElementById('linkedin_logo_img')!, 'mouseenter').subscribe(
+            async () => {
+                document.getElementById('linkedin_logo_description')!.style.opacity = '0.5';
+            }
+        );
     }
 
     async onClick(destination: string): Promise<void> {
