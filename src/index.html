@@ -7,7 +7,7 @@
     <link href='./favicon.ico' rel='icon' type='image/x-icon'>
 </head>
 <body>
-<div id='loading'>
+<div hidden id='loading'>
     <div class='loading-text'>
         <span class='loading-text-words'>L</span>
         <span class='loading-text-words'>O</span>
@@ -18,19 +18,26 @@
         <span class='loading-text-words'>G</span>
     </div>
 </div>
-<div id='container'>
+<div hidden id='container'>
+    <div id='scroll_down'>
+        <h3 id='scroll_down_text'>
+            <span>Scroll</span>
+            <br>
+            <span>down</span>
+            <div class='scroll-more'>↓</div>
+        </h3>
+    </div>
     <div class='button' id='discord'>
-        <img src='./assets/buttons/discord_logo.png' alt='discord_logo' id='discord_logo_img'>
+        <img alt='discord_logo' id='discord_logo_img' src='./assets/buttons/discord_logo.png'>
     </div>
     <div class='button' id='github'>
-        <img src='./assets/buttons/github_logo.png' alt='github_logo' id='github_logo_img'>
+        <img alt='github_logo' id='github_logo_img' src='./assets/buttons/github_logo.png'>
     </div>
     <div class='button' id='linkedin'>
-        <img src='./assets/buttons/linkedin_logo.png' alt='linkedin_logo' id='linkedin_logo_img'>
+        <img alt='linkedin_logo' id='linkedin_logo_img' src='./assets/buttons/linkedin_logo.png'>
     </div>
-    <div class='presentation'>
-        <h1>Angelo Lamonaca</h1>
-        <h1>Web Developer</h1>
+    <div id='head'>
+        <h3>Welcome</h3>
     </div>
 </div>
 </body>

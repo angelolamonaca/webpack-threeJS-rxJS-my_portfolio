@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { CameraController } from '../controllers/CameraController';
 import { render, renderer } from '../app';
-import { ScrollController } from '../controllers/ScrollController';
 
 export class Renderer extends THREE.WebGLRenderer {
     constructor() {

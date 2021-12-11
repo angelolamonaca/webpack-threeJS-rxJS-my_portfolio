@@ -14,12 +14,16 @@ export class EventController {
         this.previosWindowInnerWidth = window.innerWidth;
         this.resizeEvents$.subscribe();
 
-        document.getElementById('discord_logo_img')!.onclick = () =>
-            this.onClick('https://discordapp.com/users/568776197681709087');
-        document.getElementById('github_logo_img')!.onclick = () =>
-            this.onClick('https://github.com/angelolamonaca');
-        document.getElementById('linkedin_logo_img')!.onclick = () =>
-            this.onClick('https://www.linkedin.com/in/angelolamonaca/');
+        let touchEvent = 'onclick' in window ? 'click' : 'touchstart';
+        fromEvent(document.getElementById('discord_logo_img')!, touchEvent).subscribe(async () => {
+            await this.onClick('https://discordapp.com/users/568776197681709087');
+        });
+        fromEvent(document.getElementById('github_logo_img')!, touchEvent).subscribe(async () => {
+            await this.onClick('https://github.com/angelolamonaca');
+        });
+        fromEvent(document.getElementById('linkedin_logo_img')!, touchEvent).subscribe(async () => {
+            await this.onClick('https://www.linkedin.com/in/angelolamonaca/');
+        });
 
         window.onscroll = ScrollController.Instance.detectScrollPercentage;
         window.onbeforeunload = () => {

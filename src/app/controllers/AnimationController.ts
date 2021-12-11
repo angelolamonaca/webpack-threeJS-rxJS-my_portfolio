@@ -1,10 +1,10 @@
-import * as THREE from 'three';
 import { sceneController } from '../app';
 import { ScrollController } from './ScrollController';
+import { Clock } from 'three';
 
 export class AnimationController {
     private static _instance: AnimationController;
-    clock = new THREE.Clock();
+    clock = new Clock();
 
     public static get Instance(): AnimationController {
         return this._instance || (this._instance = new this());

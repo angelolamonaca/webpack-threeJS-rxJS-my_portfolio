@@ -1,16 +1,16 @@
-import * as THREE from 'three';
 import { cloneModel } from '../shared/SkeletonUtils';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { getRandomArbitrary } from '../shared/Math';
 import { remove } from 'lodash-es';
 import { sceneController } from '../app';
+import { AnimationAction, AnimationClip, AnimationMixer, Group } from 'three';
 
 export class Crows {
-    crowsLeft: THREE.Group[] = [];
-    crowsRight: THREE.Group[] = [];
-    crowAnimation!: THREE.AnimationClip;
-    crowMixers: THREE.AnimationMixer[] = [];
-    crowActions: THREE.AnimationAction[] = [];
+    crowsLeft: Group[] = [];
+    crowsRight: Group[] = [];
+    crowAnimation!: AnimationClip;
+    crowMixers: AnimationMixer[] = [];
+    crowActions: AnimationAction[] = [];
 
     constructor(gltfLoader: GLTFLoader) {
         gltfLoader.load('./assets/3dmodels/crow.gltf', (crowGltf) => {
@@ -38,7 +38,7 @@ export class Crows {
                 }
 
                 // Animation
-                let mixer = new THREE.AnimationMixer(cloneGltfClone);
+                let mixer = new AnimationMixer(cloneGltfClone);
                 this.crowMixers.push(mixer);
                 let action = mixer.clipAction(this.crowAnimation).play();
                 this.crowActions.push(action);

@@ -1,23 +1,20 @@
-import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { animate, render, renderer } from '../app';
-import { forEach } from 'lodash-es';
-import { CameraController } from './CameraController';
+import { animate, renderer } from '../app';
 import { delay } from '../shared/Utils';
+import { LoadingManager } from 'three';
 
-export class LoadingController {
-    private static _instance: LoadingController;
+export class CustomLoadingController {
+    private static _instance: CustomLoadingController;
     loadingComplete: boolean = false;
-
-    loadingManager = new LoadingManager();
+    loadingManager = new CustomLoadingManager();
     gltfLoader = new GLTFLoader(this.loadingManager);
 
-    public static get Instance(): LoadingController {
+    public static get Instance(): CustomLoadingController {
         return this._instance || (this._instance = new this());
     }
 }
 
-class LoadingManager extends THREE.LoadingManager {
+class CustomLoadingManager extends LoadingManager {
     constructor() {
         super();
     }
@@ -32,6 +29,7 @@ class LoadingManager extends THREE.LoadingManager {
                 itemsTotal +
                 ' files.'
         );
+        document.getElementById('loading')!.removeAttribute('hidden');
     };
     onProgress = (url: string, itemsLoaded: number, itemsTotal: number): void => {
         console.log(
@@ -46,6 +44,7 @@ class LoadingManager extends THREE.LoadingManager {
     };
     onLoad = async (): Promise<void> => {
         console.log('Loading complete!');
+        document.getElementById('container')!.removeAttribute('hidden');
         renderer.update();
         animate();
         await delay(3000);
@@ -56,7 +55,7 @@ class LoadingManager extends THREE.LoadingManager {
         // Show canvas
         document.getElementsByTagName('canvas')![0].style.opacity = '0.5';
         await delay(500);
-        LoadingController.Instance.loadingComplete = true;
+        CustomLoadingController.Instance.loadingComplete = true;
     };
     onError = (url: string): void => {
         console.log('There was an error loading ' + url);

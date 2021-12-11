@@ -1,7 +1,6 @@
-import * as THREE from 'three';
-import { Group, Light } from 'three';
+import { Color, Fog, Group, Light, Mesh, MeshPhongMaterial, PlaneGeometry, Scene } from 'three';
 
-export class World extends THREE.Scene {
+export class World extends Scene {
     constructor() {
         super();
         this.addBackground();
@@ -10,17 +9,17 @@ export class World extends THREE.Scene {
     }
 
     addBackground(): void {
-        this.background = new THREE.Color(0x3c3c3c);
+        this.background = new Color(0x3c3c3c);
     }
 
     addFog(): void {
-        this.fog = new THREE.Fog(0x3c3c3c, 10, 20);
+        this.fog = new Fog(0x3c3c3c, 10, 20);
     }
 
     addFloor(): void {
-        const mesh = new THREE.Mesh(
-            new THREE.PlaneGeometry(100, 100),
-            new THREE.MeshPhongMaterial({ color: 0x000000 })
+        const mesh = new Mesh(
+            new PlaneGeometry(100, 100),
+            new MeshPhongMaterial({ color: 0x000000 })
         );
         mesh.rotation.x = -Math.PI / 2;
         mesh.position.y = -2.5;

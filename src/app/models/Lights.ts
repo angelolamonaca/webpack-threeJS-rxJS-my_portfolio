@@ -1,16 +1,16 @@
-import * as THREE from 'three';
 import { sceneController } from '../app';
 import { colours } from '../shared/Color';
+import { SpotLight } from 'three';
 
 export class Lights {
-    spotLight: THREE.SpotLight;
-    spotLightEye: THREE.SpotLight;
+    spotLight: SpotLight;
+    spotLightEye: SpotLight;
 
     constructor() {
-        this.spotLight = new THREE.SpotLight(colours.burlywood);
+        this.spotLight = new SpotLight(colours.burlywood);
         sceneController.world.addLight(this.spotLight);
 
-        this.spotLightEye = new THREE.SpotLight(colours.burlywood);
+        this.spotLightEye = new SpotLight(colours.burlywood);
         sceneController.world.addLight(this.spotLightEye);
     }
 }

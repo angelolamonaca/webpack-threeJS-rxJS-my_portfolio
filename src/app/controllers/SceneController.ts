@@ -1,6 +1,6 @@
 import { ItachiUchiha } from '../models/ItachiUchiha';
 import { Crows } from '../models/Crows';
-import { LoadingController } from './LoadingController';
+import { CustomLoadingController } from './CustomLoadingController';
 import { World } from '../models/World';
 
 export class SceneController {
@@ -10,7 +10,7 @@ export class SceneController {
 
     constructor() {
         this.world = new World();
-        this.itachi = new ItachiUchiha(LoadingController.Instance.gltfLoader);
-        this.crows = new Crows(LoadingController.Instance.gltfLoader);
+        this.itachi = new ItachiUchiha(CustomLoadingController.Instance.gltfLoader);
+        this.crows = new Crows(CustomLoadingController.Instance.gltfLoader);
     }
 }

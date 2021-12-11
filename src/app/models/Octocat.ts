@@ -1,9 +1,9 @@
-import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { sceneController } from '../app';
+import { Group } from 'three';
 
 export class Octocat {
-    octocatScene!: THREE.Group;
+    octocatScene!: Group;
 
     constructor(gltfLoader: GLTFLoader) {
         gltfLoader.load('assets/asset/3dmodels/octocat.gltf', (octocat) => {
