@@ -5,6 +5,7 @@ import { ScrollController } from './ScrollController';
 
 export class EventController {
     previosWindowInnerWidth: number;
+    previosWindowInnerHeight: number;
     resizeEvents$: Observable<Event> = fromEvent(window, 'resize').pipe(
         tap(() => this.onWindowResize()),
         tap((event) => console.log(event))
@@ -12,6 +13,7 @@ export class EventController {
 
     constructor() {
         this.previosWindowInnerWidth = window.innerWidth;
+        this.previosWindowInnerHeight = window.innerHeight;
         this.resizeEvents$.subscribe();
         this.listenOnButtonsClickOrTouch();
         this.listenOnButtonDescriptionsHover();
@@ -57,6 +59,10 @@ export class EventController {
     onWindowResize(): void {
         if (window.innerWidth != this.previosWindowInnerWidth) {
             this.previosWindowInnerWidth = window.innerWidth;
+            renderer.update();
+        }
+        if (window.innerHeight > this.previosWindowInnerHeight) {
+            this.previosWindowInnerHeight = window.innerHeight;
             renderer.update();
         }
     }

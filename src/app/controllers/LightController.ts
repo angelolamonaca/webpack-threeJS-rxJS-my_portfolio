@@ -26,8 +26,8 @@ export class LightController {
             CameraController.Instance.camera.position.z + 10
         );
         LightController.Instance.lights.spotLight.intensity =
-            ScrollController.Instance.getGlobalScrollRelative(0, 1.2);
+            ScrollController.Instance.getGlobalScrollRelative(0, 2);
         LightController.Instance.lights.spotLightEye.intensity =
-            ScrollController.Instance.getGlobalScrollRelative(0, 0.8);
+            ScrollController.Instance.getGlobalScrollRelative(0, 1);
     }
 }

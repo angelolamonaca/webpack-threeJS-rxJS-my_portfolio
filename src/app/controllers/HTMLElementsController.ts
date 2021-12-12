@@ -21,6 +21,7 @@ export class HTMLElementsController {
     }
 
     animate() {
+        HTMLElementsController.showElementIfOnView('intro');
         HTMLElementsController.showElementIfOnView('discord');
         HTMLElementsController.showElementIfOnView('github');
         HTMLElementsController.showElementIfOnView('linkedin');

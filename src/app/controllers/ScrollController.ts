@@ -1,12 +1,10 @@
 export class ScrollController {
-    static pageHeight: number = document.getElementsByTagName('html')[0].offsetHeight;
     private static _instance: ScrollController;
-    innerHeight: number;
     scrollPercentage: number;
+    static pageHeight: number;
 
     constructor() {
         this.scrollPercentage = 0;
-        this.innerHeight = window.innerHeight;
     }
 
     public static get Instance(): ScrollController {
@@ -20,7 +18,7 @@ export class ScrollController {
      * Returns the relative value
      */
     getGlobalScrollRelative(min: number, max: number): number {
-        return ((max - min) * scrollY) / ScrollController.pageHeight + min;
+        return ((max - min) * window.scrollY) / ScrollController.pageHeight + min;
     }
 
     /**
@@ -32,7 +30,7 @@ export class ScrollController {
      */
     getPartialScrollRelative(min: number, max: number, maxScrollPercentage: number): number {
         return (
-            ((max - min) * scrollY) /
+            ((max - min) * (window.scrollY + window.innerHeight)) /
                 ScrollController.Instance.convertScrollPercentageToPageHeight(maxScrollPercentage) +
             min
         );
@@ -43,7 +41,7 @@ export class ScrollController {
      */
     detectScrollPercentage(): void {
         ScrollController.Instance.scrollPercentage = Math.round(
-            (window.scrollY * 100) / (ScrollController.pageHeight - innerHeight)
+            (window.scrollY * 100) / ScrollController.pageHeight
         );
     }
 
@@ -51,10 +49,11 @@ export class ScrollController {
      * Returns true if we scrolled to the bottom
      */
     isBottom(): boolean {
-        return ScrollController.pageHeight - scrollY < innerHeight + 100;
+        if (!ScrollController.pageHeight) return false;
+        return ScrollController.pageHeight - window.scrollY < window.innerHeight + 100;
     }
 
     convertScrollPercentageToPageHeight(scrollPercentage: number): number {
-        return (ScrollController.pageHeight * scrollPercentage) / 100;
+        return ScrollController.pageHeight * (scrollPercentage / 100);
     }
 }

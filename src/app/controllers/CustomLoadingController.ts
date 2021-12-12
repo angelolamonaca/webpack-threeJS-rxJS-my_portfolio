@@ -2,6 +2,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { animate, renderer } from '../app';
 import { delay } from '../shared/Utils';
 import { LoadingManager } from 'three';
+import { ScrollController } from './ScrollController';
 
 export class CustomLoadingController {
     private static _instance: CustomLoadingController;
@@ -56,6 +57,14 @@ class CustomLoadingManager extends LoadingManager {
         document.getElementsByTagName('canvas')![0].style.opacity = '0.5';
         await delay(500);
         CustomLoadingController.Instance.loadingComplete = true;
+
+        ScrollController.pageHeight = Math.max(
+            document.body.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.clientHeight,
+            document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight
+        );
     };
     onError = (url: string): void => {
         console.log('There was an error loading ' + url);
